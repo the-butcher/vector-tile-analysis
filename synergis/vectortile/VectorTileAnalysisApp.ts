@@ -27,10 +27,10 @@ export class VectorTileAnalysisApp {
     private static layoutHook: LayoutHook;
 
     //main page (toolbar, content, statusbar)
-    private static layoutMain: LayoutBorder; 
+    private static layoutMain: LayoutBorder;
 
     //primary gui elements
-    private static layoutHeader: LayoutContent;    
+    private static layoutHeader: LayoutContent;
     private static layoutCenter: LayoutBorder;
     private static layoutStatus: LayoutContent;
 
@@ -74,10 +74,10 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.layoutHook = new LayoutHook('layout_div_main');
 
         //main page (toolbar, content, statusbar)
-        VectorTileAnalysisApp.layoutMain = new LayoutBorder(VectorTileAnalysisApp.layoutHook, LayoutBorder.CENTER, 'main', 'width:100%; height:100%'); 
+        VectorTileAnalysisApp.layoutMain = new LayoutBorder(VectorTileAnalysisApp.layoutHook, LayoutBorder.CENTER, 'main', 'width:100%; height:100%');
 
         //primary gui elements
-        VectorTileAnalysisApp.layoutHeader = new LayoutContent(VectorTileAnalysisApp.layoutMain, LayoutBorder.TOP, 'toolbar', 'overflow: hidden; background-color: var(--pane-background); width:100%; height:24px; margin: 6px 6px 6px 6px; color: var(--font-color)');    
+        VectorTileAnalysisApp.layoutHeader = new LayoutContent(VectorTileAnalysisApp.layoutMain, LayoutBorder.TOP, 'toolbar', 'overflow: hidden; background-color: var(--pane-background); width:100%; height:24px; margin: 6px 6px 6px 6px; color: var(--font-color)');
         VectorTileAnalysisApp.layoutCenter = new LayoutBorder(VectorTileAnalysisApp.layoutMain, LayoutBorder.CENTER, 'content', 'width:100%; height:100%');
         VectorTileAnalysisApp.layoutStatus = new LayoutContent(VectorTileAnalysisApp.layoutMain, LayoutBorder.BOTTOM, 'statusbar', 'overflow: hidden; background-color: var(--pane-background); width:100%; height:16px; margin: 0px 6px 6px 6px; color: var(--font-color)');
 
@@ -100,7 +100,7 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.layoutViewX = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'pointer-x', 'display:inline-block; width:150px; text-align:right; background-color: var(--pane-background)');
         VectorTileAnalysisApp.layoutViewY = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'pointer-y', 'display:inline-block; width:150px; text-align:left; background-color: var(--pane-background)');
         VectorTileAnalysisApp.layoutScale = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'scale', 'display:inline-block; width:200px; text-align:left; background-color: var(--pane-background)');
-        VectorTileAnalysisApp.layoutLevel = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'zoom', 'display:inline-block; width:200px; text-align:left; background-color: var(--pane-background)');                
+        VectorTileAnalysisApp.layoutLevel = new LayoutBlock(VectorTileAnalysisApp.layoutStatus, LayoutBorder.CENTER, 'zoom', 'display:inline-block; width:200px; text-align:left; background-color: var(--pane-background)');
 
         VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#000000'));
         VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#00384d'));
@@ -108,40 +108,40 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.addMapBackgroundColorChoice(Color.parseHex('#FFFFFF'));
 
         VectorTileAnalysisApp.addSpatialBookmark('basemap sample tile', {
-            center: [15.11, 48.22],   
+            center: [15.11, 48.22],
             scale: 577790,
-        });     
+        });
         VectorTileAnalysisApp.addSpatialBookmark('park in saudi arabia', {
-            center: [36.48, 29.35],   
+            center: [36.48, 29.35],
             scale: 4622324
         });
         VectorTileAnalysisApp.addSpatialBookmark('berlin detail', {
-            center: [13.397827153552527, 52.519563527352574],   
+            center: [13.397827153552527, 52.519563527352574],
             scale: 9000
         });
 
 
         //get the entire layout started
-        VectorTileAnalysisApp.layoutHook.startup(); 
+        VectorTileAnalysisApp.layoutHook.startup();
 
-        VectorTileAnalysisApp.layoutColorPicker = new LayoutColorPicker();        
+        VectorTileAnalysisApp.layoutColorPicker = new LayoutColorPicker();
 
     }
 
     static addSpatialBookmark(title: string, target: any) {
-        let spatialBookmarkChoice: LayoutBlock = new LayoutBlock(VectorTileAnalysisApp.layoutHeader, LayoutBorder.CENTER, 'zoom', 'cursor: pointer; display:inline-block; margin: 4px 4px 4px 0px; width:16px; float: right; background-color: var(--pane-background)');  
-        spatialBookmarkChoice.getHtmlElement().innerHTML = '<img src="images/sbm16.png" width="16" height="16" title="' + title + '" />';     
-        spatialBookmarkChoice.getHtmlElement().onclick = function() {
+        let spatialBookmarkChoice: LayoutBlock = new LayoutBlock(VectorTileAnalysisApp.layoutHeader, LayoutBorder.CENTER, 'zoom', 'cursor: pointer; display:inline-block; margin: 4px 4px 4px 0px; width:16px; float: right; background-color: var(--pane-background)');
+        spatialBookmarkChoice.getHtmlElement().innerHTML = '<img src="images/sbm16.png" width="16" height="16" title="' + title + '" />';
+        spatialBookmarkChoice.getHtmlElement().onclick = function () {
             VectorTileAnalysisApp.view.goTo(target, {
                 duration: 7000
             });
-        }        
+        }
     };
 
     static addMapBackgroundColorChoice(color: IColor): void {
-        let mapBackgroundColorChoice: LayoutBlock = new LayoutBlock(VectorTileAnalysisApp.layoutHeader, LayoutBorder.CENTER, 'zoom', 'cursor: pointer; display:inline-block; margin: 4px 0px 4px 4px; width:16px; text-align:left; border: 1px solid var(--page-background); background-color: ' + color.getHex());  
-        mapBackgroundColorChoice.getHtmlElement().innerHTML = '&nbsp;';     
-        mapBackgroundColorChoice.getHtmlElement().onclick = function() {
+        let mapBackgroundColorChoice: LayoutBlock = new LayoutBlock(VectorTileAnalysisApp.layoutHeader, LayoutBorder.CENTER, 'zoom', 'cursor: pointer; display:inline-block; margin: 4px 0px 4px 4px; width:16px; text-align:left; border: 1px solid var(--page-background); background-color: ' + color.getHex());
+        mapBackgroundColorChoice.getHtmlElement().innerHTML = '&nbsp;';
+        mapBackgroundColorChoice.getHtmlElement().onclick = function () {
             VectorTileAnalysisApp.setMapBackground(color);
         }
     }
@@ -155,7 +155,7 @@ export class VectorTileAnalysisApp {
      * @param layerId 
      */
     static findLayerSet(layerId: string): ILayerSet {
-        for (let i=0; i<VectorTileAnalysisApp.layerSets.length; i++) {
+        for (let i = 0; i < VectorTileAnalysisApp.layerSets.length; i++) {
             if (VectorTileAnalysisApp.layerSets[i].getId() === layerId) {
                 return VectorTileAnalysisApp.layerSets[i];
             }
@@ -177,16 +177,16 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.layerSets.push(layerSet);
         VectorTileAnalysisApp.view.whenLayerView(layerSet.getVectorBaseLayer()).then(layerView => {
             layerSet.getBoundariesLayer().attachToVectorTileLayerView(layerView);
-        });        
+        });
     }
 
     static initMap(): void {
 
-        let basemapTerrainLayer: TileLayer = new TileLayer({
-            id: 'hillshade',
-            visible: true,
-            url: 'https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer'
-        });
+        // let basemapTerrainLayer: TileLayer = new TileLayer({
+        //     id: 'hillshade',
+        //     visible: true,
+        //     url: 'https://services.arcgisonline.com/arcgis/rest/services/Elevation/World_Hillshade/MapServer'
+        // });
 
         //build the initial set of group layers
         VectorTileAnalysisApp.layerSets = [];
@@ -202,27 +202,27 @@ export class VectorTileAnalysisApp {
         VectorTileAnalysisApp.vectorBaseLayers = new GroupLayer({
             id: 'vecor-base-layers',
             title: 'vectortiles'
-        });   
+        });
         VectorTileAnalysisApp.vectorUserLayers = new GroupLayer({
             id: 'vecor-user-layers',
             title: 'vectortiles'
-        });               
+        });
 
-        let map = new EsriMap({    
+        let map = new EsriMap({
             layers: [
-                basemapTerrainLayer,
+                // basemapTerrainLayer,
                 VectorTileAnalysisApp.vectorBaseLayers,
                 VectorTileAnalysisApp.vectorUserLayers,
                 VectorTileAnalysisApp.boundariesLayers,
                 VectorTileAnalysisApp.activeTileLayers
             ]
         });
-        VectorTileAnalysisApp.view = new MapView({ 
+        VectorTileAnalysisApp.view = new MapView({
             map: map,
             container: VectorTileAnalysisApp.layoutMap.getHtmlElement().getAttribute('id'),
             constraints: {
-                rotationEnabled: false 
-            }	
+                rotationEnabled: false
+            }
         });
         VectorTileAnalysisApp.view.ui.remove('zoom');
 
@@ -237,19 +237,19 @@ export class VectorTileAnalysisApp {
         */
 
         VectorTileAnalysisApp.view.on('pointer-move', event => {
-            var point = VectorTileAnalysisApp.view.toMap({x: event.x, y: event.y});
+            var point = VectorTileAnalysisApp.view.toMap({ x: event.x, y: event.y });
             VectorTileAnalysisApp.layoutViewX.getHtmlElement().innerHTML = point.x.toFixed(2);
             VectorTileAnalysisApp.layoutViewY.getHtmlElement().innerHTML = '/' + point.y.toFixed(2);
-        });	
+        });
 
         VectorTileAnalysisApp.view.watch('scale', scale => {
             this.updateZoom();
-        });		    
-      
+        });
+
     }
 
     static updateZoom(): void {
-        VectorTileAnalysisApp.layoutScale.getHtmlElement().innerHTML = 'scale 1:' + VectorTileAnalysisApp.view.scale.toFixed(0); 
+        VectorTileAnalysisApp.layoutScale.getHtmlElement().innerHTML = 'scale 1:' + VectorTileAnalysisApp.view.scale.toFixed(0);
         VectorTileAnalysisApp.layoutLevel.getHtmlElement().innerHTML = 'lod: ' + VectorTileAnalysisApp.view.zoom.toFixed(2);
     }
 
@@ -263,8 +263,8 @@ export class VectorTileAnalysisApp {
 
         VectorTileAnalysisApp.view.when(() => {
             VectorTileAnalysisApp.view.goTo({
-                center: [16.87, 52.48],   
-                scale: 8000000,
+                center: [9.1448649, 45.4166838], // [16.87, 52.48],
+                scale: 72074.08954063045,
             });
         });
 

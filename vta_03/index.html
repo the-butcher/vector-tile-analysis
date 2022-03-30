@@ -1,64 +1,62 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-		<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 
-		<title>vector-tile-analysis 0.2.b3</title>
-				
-		<link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/dark/main.css">
-		<link rel="stylesheet" href="https://js.arcgis.com/4.14/dijit/themes/tundra/tundra.css">
-		<link rel="stylesheet" href="https://js.arcgis.com/4.14/dojox/widget/ColorPicker/ColorPicker.css" />
-		<link rel="stylesheet" href="css_synergis/vta00b3.css">
-				
-				
-		<script>
-		//a global variable being used in dojo.js and init.js wher 
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+
+	<title>vector-tile-analysis 0.2.b3</title>
+
+	<link rel="stylesheet" href="https://js.arcgis.com/4.14/esri/themes/dark/main.css">
+	<link rel="stylesheet" href="https://js.arcgis.com/4.14/dijit/themes/tundra/tundra.css">
+	<link rel="stylesheet" href="https://js.arcgis.com/4.14/dojox/widget/ColorPicker/ColorPicker.css" />
+	<link rel="stylesheet" href="css_synergis/vta00b3.css">
+
+
+	<script>
+		//a global variable being used in dojo.js and init.js wher
 		var localDojoBase = 'https://js.arcgis.com/4.13/esri/dojo';
 		var dojoConfig = {
 			"async": false,
-			"tlmSiblingOfDojo": false, 
+			"tlmSiblingOfDojo": false,
 			"isDebug": false,
 			"packages": [
 				{
 					"name": "synergis",
-					"location": "http://localhost/vta_03/js_synergis" 
+					"location": "http://localhost/vta_03/js_synergis"
 				},
 				{
 					"name": "@amcharts",
-					"location": "http://localhost/vta_03/js_amcharts" 
-				}					
+					"location": "http://localhost/vta_03/js_amcharts"
+				}
 			]
 		};
-  		</script>
-  		
-  		<script	src="https://js.arcgis.com/4.13"></script>
-  		<script src="http://localhost/vta_03/js_amcharts/amcharts4/core.js"></script>
-		<script src="http://localhost/vta_03/js_amcharts/amcharts4/charts.js"></script>
-		<script src="http://localhost/vta_03/js_amcharts/amcharts4//themes/dark.js"></script>
-		<script src="http://localhost/vta_03/js_amcharts/amcharts4//themes/animated.js"></script>
-  		
-  		
-		<script>
+	</script>
 
-			function init() {
-				require(["synergis/main"]);
-			}
-		
-  		</script>  		
-  		
-	</head>
-	<body onload="init()">
-	
-		<!--  
-		<a href="https://developers.arcgis.com/javascript/latest/guide/typescript-setup/">https://developers.arcgis.com/javascript/latest/guide/typescript-setup/</a><br>
-		<a href="https://code.visualstudio.com/docs/typescript/typescript-compiling">https://code.visualstudio.com/docs/typescript/typescript-compiling</a><br>
-		<a href="https://github.com/miracle2k/protobuf/blob/master/java/src/main/java/com/google/protobuf/CodedInputStream.java">https://github.com/miracle2k/protobuf/blob/master/java/src/main/java/com/google/protobuf/CodedInputStream.java</a>
-		-->
-			
-		<div id="layout_div_main" style="height: 100%; width: 100%;"></div>
-		
-	</body>
+	<script src="https://js.arcgis.com/4.14"></script>
+	<script src="http://localhost/vta_03/js_amcharts/amcharts4/amcharts3merge.js"></script>
+	<script>
+		//(hack) prevent the dojo loader from loading amcharts scripts in alphabetical order (causing some components depending on each other not to be ready on time)
+		console.log(window['am4core'].utils.trim('amcharts3merge early import'));
+	</script>
+
+	<script>
+
+		function init() {
+			require(["synergis/main"]);
+		}
+
+	</script>
+
+</head>
+
+<body onload="init()">
+
+
+	<div id="layout_div_main" style="height: 100%; width: 100%;"></div>
+
+</body>
+
 </html>

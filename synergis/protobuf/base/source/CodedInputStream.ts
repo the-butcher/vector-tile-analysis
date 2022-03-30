@@ -1,11 +1,10 @@
 import { TagUtil } from "../../TagUtil";
 import { WireType } from "../../WireType";
-import { viewPortHandler } from "@amcharts/amcharts4/.internal/core/utils/Instance";
 
 /**
  * partial javascript port of:
  * https://github.com/miracle2k/protobuf/blob/master/java/src/main/java/com/google/protobuf/CodedInputStream.java
- * 
+ *
  * @author h.fleischer
  * @since 21.07.2019
  */
@@ -55,10 +54,10 @@ export class CodedInputStream {
         }
         shift += 7;
       }
-      
+
       throw new Error('malformed varint' + maxShift);
 
-    }    
+    }
 
     readDouble(): number {
 
@@ -94,7 +93,7 @@ export class CodedInputStream {
 
     /**
      * get the bytecount that the given string value would consume, when encoded
-     * @param value 
+     * @param value
      */
     static computeStringSizeNoTag(value: string) {
       return new TextEncoder().encode(value).length;
@@ -102,7 +101,7 @@ export class CodedInputStream {
 
     /**
      * https://github.com/protocolbuffers/protobuf/blob/master/java/core/src/main/java/com/google/protobuf/CodedOutputStream.java
-     * @param value 
+     * @param value
      */
     static computeUInt32SizeNoTag(value: number): number {
       if ((value & (~0 << 7)) == 0) {
@@ -118,18 +117,18 @@ export class CodedInputStream {
         return 4;
       }
       return 5;
-    }    
+    }
 
     static computeTagSize(fieldNumber: number): number {
       return CodedInputStream.computeUInt32SizeNoTag(TagUtil.toTag(fieldNumber, WireType.get(WireType.INDEX_________VARINT32).getRaw()));
-    }    
+    }
 
     static computeUInt32Size(fieldNumber: number, value: number): number {
       return CodedInputStream.computeTagSize(fieldNumber) + CodedInputStream.computeUInt32SizeNoTag(value);
-    }    
+    }
 
     static decodeZigZag(n: number) {
       return (n >>> 1) ^ -(n & 1);
-    }    
+    }
 
 }

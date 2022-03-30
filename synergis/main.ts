@@ -16,7 +16,7 @@ VectorTileAnalysisApp.addLayerSet({
     visible: true,
     id: 'ags_basemap',
     title: 'World_Basemap_v2',
-    url: 'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer'
+    url: 'https://w-sup-woent1091.synergis.intern/arcgis1091/rest/services/Hosted/DBTR/VectorTileServer' // 'https://basemaps.arcgis.com/arcgis/rest/services/World_Basemap_v2/VectorTileServer'
 });
 /*
 VectorTileAnalysisApp.addLayerSet({

@@ -1,6 +1,6 @@
-import * as am4core from "@amcharts/amcharts4/core";
-import * as am4charts from "@amcharts/amcharts4/charts";
-import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import * as am4core from "@amcharts/amcharts4/amcharts3merge";
+import * as am4charts from "@amcharts/amcharts4/amcharts3merge";
+// import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 import am4themes_dark from "@amcharts/amcharts4/themes/dark";
 
 import ContentPane from 'dijit/layout/ContentPane';
@@ -10,11 +10,11 @@ import { ITreeData } from "../vectortile/data/ITreeData";
 /**
  * implementation of ILayout around an amchart TreeMap element<br>
  * visit https://www.amcharts.com/ for more information
- * 
+ *
  * @author h.fleischer
  * @since 09.10.2019
  */
-export class LayoutChart implements ILayout { 
+export class LayoutChart implements ILayout {
 
     private readonly dojoElement: ContentPane;
     private readonly htmlElement: HTMLDivElement;
@@ -46,12 +46,12 @@ export class LayoutChart implements ILayout {
         // @ts-ignore
         am4charts = window['am4charts'];
         // @ts-ignore
-        am4themes_animated = window['am4themes_animated'];
+        // am4themes_animated = window['am4themes_animated'];
         // @ts-ignore
-        am4themes_dark = window['am4themes_dark'];
+        // am4themes_dark = window['am4themes_dark'];
 
-        am4core.useTheme(am4themes_dark);
-        am4core.useTheme(am4themes_animated);
+        // am4core.useTheme(am4themes_dark);
+        // am4core.useTheme(am4themes_animated);
 
     }
 
@@ -69,7 +69,7 @@ export class LayoutChart implements ILayout {
     findRecursive(itemId: string, treeMapDataItem: am4charts.TreeMapDataItem): am4charts.TreeMapDataItem {
         if (treeMapDataItem.id === itemId) {
             return treeMapDataItem;
-        } 
+        }
         if (treeMapDataItem.children) {
             for (let i: number = 0; i < treeMapDataItem.children.length; i++) {
                 let foundItem: am4charts.TreeMapDataItem = this.findRecursive(itemId, treeMapDataItem.children.getIndex(i));
@@ -87,7 +87,7 @@ export class LayoutChart implements ILayout {
             if (foundItem != null) {
                 return foundItem;
             }
-        }  
+        }
         return null;
     }
 
@@ -110,16 +110,16 @@ export class LayoutChart implements ILayout {
         this.chart.paddingTop = 3;
         this.chart.paddingBottom = 0;
         //this.chart.background.fill = am4core.color('#DDDDDD'); //--page-background
-        
+
         this.chart.zoomOutButton.disabled  = true;
-        
+
         // templates for the 3 levels in the tree chart (tiles|layers|layer-details)
         let level0SeriesTemplate: am4charts.TreeMapSeries = this.configureSeriesTemplate('0');
         let level1SeriesTemplate: am4charts.TreeMapSeries = this.configureSeriesTemplate('1');
         let level2SeriesTemplate: am4charts.TreeMapSeries = this.configureSeriesTemplate('2');
         let level3SeriesTemplate: am4charts.TreeMapSeries = this.configureSeriesTemplate('3');
 
-        this.chart.data = dataItems;   
+        this.chart.data = dataItems;
 
         //if a single tile was loaded, wait for the chart to become ready, then expand immediately
         let _this = this;
@@ -129,13 +129,13 @@ export class LayoutChart implements ILayout {
                     this.focusItem(dataItems[0].getId());
                 }
             }, 100);
-        }, this);        
-        
-        //have the tree open the respective node 
+        }, this);
+
+        //have the tree open the respective node
         this.chart.events.on('toggled', function(ev) {
             setTimeout(() => {
-                
-                //collect all ids needed to unfold the tree 
+
+                //collect all ids needed to unfold the tree
                 var zoomableItem = ev.target.currentlyZoomed;
                 var uuids = [];
                 while (zoomableItem.id) {
@@ -148,23 +148,23 @@ export class LayoutChart implements ILayout {
                 for (var i=0; i<uuids.length; i++) {
                     _this.itemSelectCallback.call(null, uuids[i]);
                 }
-                
+
             }, 100)
-        }, this.chart);           
+        }, this.chart);
 
     }
 
     configureSeriesTemplate(pIndex: string): am4charts.TreeMapSeries {
-        			
+
         // level 0 series template
         let seriesTemplate: am4charts.TreeMapSeries = this.chart.seriesTemplates.create(pIndex);
         let columnTemplate: am4charts.Column = seriesTemplate.columns.template;
-        
+
 
         seriesTemplate.stroke = am4core.color('#DDDDDD'); //--page-background
         seriesTemplate.strokeWidth = 2;
         seriesTemplate.strokeOpacity = 1;
-        
+
         columnTemplate.tooltipPosition = 'pointer';
         columnTemplate.tooltipText = '{name}';
 
@@ -181,22 +181,23 @@ export class LayoutChart implements ILayout {
                 return '{name}\n' + value + ' byte';
             }
         });
-        
+
         seriesTemplate.tooltip.fontSize = 12;
         seriesTemplate.tooltip.numberFormatter.numberFormat = '#######.####';
-        
+
         let seriesBullet: am4charts.LabelBullet = seriesTemplate.bullets.push(new am4charts.LabelBullet());
-        seriesBullet.locationX = 1;
-        seriesBullet.locationY = 1;
-        seriesBullet.dx = 5;
-        seriesBullet.dy = 5;
+        //seriesBullet.locationX = 1;
+        //seriesBullet.locationY = 1;
+        //seriesBullet.dx = 5;
+        //seriesBullet.dy = 5;
+        // seriesBullet.horizontalCenter = 'left';
         seriesBullet.label.text = '{name}';
         seriesBullet.label.fontSize = 14;
-        seriesBullet.label.horizontalCenter = 'left'; 
-        seriesBullet.label.verticalCenter = 'top';
- 
+        // seriesBullet.label.horizontalCenter = 'right';
+        seriesBullet.label.verticalCenter = 'bottom';
+
         return seriesTemplate;
-        
-    }    
+
+    }
 
 }

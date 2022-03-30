@@ -10,6 +10,7 @@ export class QuadLevelImpl implements IQuadLevel {
         this.level = level;
         this.origin = origin;
         this.norm = norm;
+        // console.log(this.level, this.norm)
     }
 
     getOrigin(): number[] {

@@ -1,6 +1,6 @@
 /* base settings */
 :root {
-	
+
 	--page-background: #DDDDDD;
 	--pane-background: #FFFFFF;
     --font-color: #000000;
@@ -10,7 +10,7 @@
 	--icon-color-hover: #000000;
 	--tab-active-color: #3c9ad0;
 	--tab-inactive-color: #bcc9d1;
-    
+
 }
 
 :focus {
@@ -26,7 +26,7 @@ html, body, #pageContainer {
 	font-family: Consolas;
 	font-size: 12px;
 	background-color: var(--page-background);
-}		
+}
 
 span, div {
 	font-family: Consolas;
@@ -55,7 +55,7 @@ html {
 
 .esri-view .esri-view-root {
 	height: 100%;
-}	
+}
 
 /* make the toolbar dark */
 .dijitToolbar {
@@ -70,7 +70,7 @@ html {
 	height:18px;
 	width:18px;
 	background-size: 16px 16px;
-	background-position: 3px 0px; 
+	background-position: 3px 0px;
 	background-repeat: no-repeat;
 	background-image: url(../images/icon_angle_right.svg);
 }
@@ -78,7 +78,7 @@ html {
 	height:18px;
 	width:18px;
 	background-size: 16px 16px;
-	background-position: 3px 0px; 
+	background-position: 3px 0px;
 	background-repeat: no-repeat;
 	background-image: url(../images/icon_angle_down.svg);
 }
@@ -89,10 +89,10 @@ html {
 
 /* no background lines in the toc */
 .dijitTreeExpandoLeaf {
-    background-image: url(images/p18.gif);
+    background-image: url(../images/p18.gif);
 }
 .dijitTreeNode {
-    background-image: url(images/p18.gif);
+    background-image: url(../images/p18.gif);
 }
 
 .dijitTreeContainer {
@@ -119,9 +119,9 @@ html {
 
 /* tab labels */
 .dijitTreeLabel, .dijitTab, .dijitTabContainerTop-tabs {
-	
+
 	font-size: 14px;
-	color: var(--font-color) ; 
+	color: var(--font-color) ;
 }
 
 .dijitTabInner {
@@ -151,19 +151,19 @@ html {
 
 /* general tab */
 .dijitTabContainerTop-tabs  {
-	background-color: var(--page-background); 
-	border-bottom: 1px solid var(--page-background); 
+	background-color: var(--page-background);
+	border-bottom: 1px solid var(--page-background);
 }
 
 /* general tab */
 .dijitTab  {
 	border-top: 3px solid var(--tab-inactive-color);
-	border-right: none; 
-	border-bottom: 1px solid var(--page-background); 
-	border-left: none; 
+	border-right: none;
+	border-bottom: 1px solid var(--page-background);
+	border-left: none;
 
     margin: 0px 2px 0px 0px;
-	background-color: var(--pane-background); 
+	background-color: var(--pane-background);
 }
 
 /* general tab hover border */
@@ -180,7 +180,7 @@ html {
 	border-top: 3px solid var(--tab-active-color);
     background-color: var(--pane-background);
     border-bottom-color: var(--pane-background);
-}		
+}
 
 .dijitTabPaneWrapper {
 	border: none;
@@ -211,7 +211,7 @@ html {
 }
 
 .dijitContentPane {
-	background-color: var(--page-background); 
+	background-color: var(--page-background);
 }
 
 .dijitTooltipContainer {
@@ -245,7 +245,7 @@ html {
 }
 
 .dojoxColorPicker {
-    background: var(--pane-background); 
+    background: var(--pane-background);
     border: 1px solid var(--gui-border-color);
 	padding: 4px;
 	border-radius: 0px;
@@ -256,7 +256,7 @@ html {
 .dojoxColorPickerOptional  {
 	font-family: Consolas;
 	font-size: 12px;
-	color: var(--font-color) ; 
+	color: var(--font-color) ;
 }
 .dojoxColorPickerOptional input {
     border: 1px solid var(--gui-border-color);
@@ -265,6 +265,6 @@ html {
     line-height: 1.1em;
     font-family: Consolas;
 	font-size: 12px;
-	color: var(--font-color) ;    
-	background-color: var(--pane-background); 
+	color: var(--font-color) ;
+	background-color: var(--pane-background);
 }

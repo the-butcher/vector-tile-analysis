@@ -29,7 +29,7 @@ export class DataTypeVectorTile implements IDataType {
 export class DataTypeVectorTileLayer implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_TACHOGRAPH, 'scale(0.8)', '0px', treeData.getColor());
-    }     
+    }
     visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}    getStyleTransform(): string {
         return 'scale(0.8)';
     }
@@ -44,7 +44,7 @@ export class DataTypePolygon implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_POLYGON, 'scale(0.8)', '0px 0px 0px -2px', treeData.getColor());
     }
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('add ' + treeData.getName() + ' polygon overlay', IconConstants.ICON_ADD_LAYER, 'scale(0.8)', '0px', treeData.getColor(), (iconNode: HTMLDivElement) => {
             VectorTileAnalysisApp.mapContent.addPaintSet(treeData, PaintType.get(PaintType.INDEX______POLYGON));
@@ -55,8 +55,8 @@ export class DataTypePolygon implements IDataType {
 export class DataTypePolyline implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_POLYLINE, 'scale(0.8) rotate(-60deg)', '0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('add ' + treeData.getName() + ' polyline overlay', IconConstants.ICON_ADD_LAYER, 'scale(0.8)', '0px', treeData.getColor(), (iconNode: HTMLDivElement) => {
             VectorTileAnalysisApp.mapContent.addPaintSet(treeData, PaintType.get(PaintType.INDEX_____POLYLINE));
@@ -67,8 +67,8 @@ export class DataTypePolyline implements IDataType {
 export class DataTypePoint implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_POINTS, 'scale(0.8)', '0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('add ' + treeData.getName() + ' point overlay', IconConstants.ICON_ADD_LAYER, 'scale(0.8)', '0px', treeData.getColor(), (iconNode: HTMLDivElement) => {
             VectorTileAnalysisApp.mapContent.addPaintSet(treeData, PaintType.get(PaintType.INDEX________POINT));
@@ -79,8 +79,8 @@ export class DataTypePoint implements IDataType {
 export class DataTypeVersion implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_CODE_BRANCH, 'scale(0.7)', '0px', treeData.getColor());
-    }   
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -89,8 +89,8 @@ export class DataTypeVersion implements IDataType {
 export class DataTypeName implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_SIGNATURE, 'scale(0.8)', '3px 0px 0px 0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -99,8 +99,8 @@ export class DataTypeName implements IDataType {
 export class DataTypeKeys implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_KEY, 'scale(0.7)', '0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -109,8 +109,8 @@ export class DataTypeKeys implements IDataType {
 export class DataTypeKey implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_KEY, 'scale(0.7)', '0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         let valueFilter: IValueFilter = treeData.getValueFilter();
         if (valueFilter != null) {
@@ -124,8 +124,8 @@ export class DataTypeKey implements IDataType {
 export class DataTypeValues implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_MISC, 'scale(0.7)', '0px', treeData.getColor());
-    }    
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -134,8 +134,8 @@ export class DataTypeValues implements IDataType {
 export class DataTypeValue implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_MISC, 'scale(0.7)', '0px', treeData.getColor());
-    }   
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -144,8 +144,8 @@ export class DataTypeValue implements IDataType {
 export class DataTypeTags implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_TAGS, 'scale(0.8)', '0px', treeData.getColor());
-    }   
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -154,8 +154,8 @@ export class DataTypeTags implements IDataType {
 export class DataTypeExtent implements IDataType {
     getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_EXPAND, 'scale(0.8)', '0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -169,7 +169,7 @@ export class DataTypeMapLayer implements IDataType {
             VectorTileAnalysisApp.mapContent.toggleMapLayerVisibility(iconNode, treeData.getId());
         });
     }
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -183,7 +183,7 @@ export class DataTypeLayerSet implements IDataType {
             VectorTileAnalysisApp.mapContent.toggleLayerSetVisibility(iconNode, treeData.getId());
         });
     }
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -197,7 +197,7 @@ export class DataTypePaintSet implements IDataType {
             VectorTileAnalysisApp.mapContent.togglePaintSetVisibility(iconNode, treeData.getId());
         });
     }
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_REMOVE_LAYER, 'scale(0.8)', '0px', treeData.getColor(), (iconNode: HTMLDivElement) => {
             VectorTileAnalysisApp.mapContent.removePaintSet(treeData.getId());
@@ -213,7 +213,7 @@ export class DataTypeStyleLayer implements IDataType {
             VectorTileAnalysisApp.mapContent.togglePaintVisibility(iconNode, treeData.getId());
         });
     }
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -236,7 +236,7 @@ export class DataTypeStyleColor implements IDataType {
             VectorTileAnalysisApp.layoutColorPicker.showColorPicker(iconNode, paint.getColor(), onChange);
         });
     }
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -289,8 +289,8 @@ export class DataTypeStyleDimension implements IDataType {
 export class DataTypeUnknown implements IDataType {
      getIconNode(treeData: ITreeData): ITreeIconNode {
         return new TreeIconNodeImpl('', IconConstants.ICON_MISC, 'scale(0.7)', '0px', treeData.getColor());
-    }  
-    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {} 
+    }
+    visitLabelNode(treeData: ITreeData, labelNode: HTMLDivElement, contentNode: HTMLDivElement): void {}
     getActionNode(treeData: ITreeData): ITreeIconNode {
         return null;
     }
@@ -298,7 +298,7 @@ export class DataTypeUnknown implements IDataType {
 
 /**
  * accessor to the various data-types as defined in the protocol-buffer standard
- * 
+ *
  * @author h.fleischer
  * @since 22.09.2019
  */

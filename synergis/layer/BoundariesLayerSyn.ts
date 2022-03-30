@@ -1,4 +1,4 @@
-const promiseUtils =  require('esri/core/promiseUtils');
+const promiseUtils = require('esri/core/promiseUtils');
 
 import FeatureLayer from 'esri/layers/FeatureLayer';
 import LayerView from 'esri/views/layers/LayerView';
@@ -28,7 +28,7 @@ import { BOUNDARY_FIELD_PROPS, BOUNDARY_FIELD_OBJECTID, BOUNDARY_FIELD_REF_TILE_
  * @since 21.09.2019
  * 
  */
-export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
+export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer {
 
     private readonly parentUid: string;
     private readonly color: IColor;
@@ -50,15 +50,15 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
             fields: BOUNDARY_FIELD_PROPS,
             objectIdField: BOUNDARY_FIELD_OBJECTID.name,
             spatialReference: {
-                wkid: 3857
+                wkid: 32632  // 3857
             },
             geometryType: 'polygon',
             popupEnabled: false,
             renderer: new SimpleRenderer({
                 symbol: new SimpleFillSymbol({
-                    color: [ 250, 235, 35, 0 ],
+                    color: [250, 235, 35, 0],
                     outline: new SimpleLineSymbol({
-                        color: [ color.getRgb()[0] * 255, color.getRgb()[1] * 255, color.getRgb()[2] * 255, 0.1 ],
+                        color: [color.getRgb()[0] * 255, color.getRgb()[1] * 255, color.getRgb()[2] * 255, 0.1],
                         width: 0.1
                     })
                 })
@@ -93,15 +93,15 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
 
         this.definitionExpression = where; //with def query it may not even be necessary to apply to query as well (TODO -> verify)
 
-        let query: Query  = this.createQuery();
+        let query: Query = this.createQuery();
         query.geometry = geometry;
         query.where = where;
 
         let _this = this;
-        return promiseUtils.create(function(resolve:any, reject:any) {
+        return promiseUtils.create(function (resolve: any, reject: any) {
             _this.queryFeatures(query).then(
                 function (results: FeatureSet) {
-                    
+
                     //console.log(results.features, results.features.map(feature => feature.attributes[TileBoundaryFieldNames.REF_TILE_LOD]).join('/'));
                     //it appears that when zooming in, some tiles of larger scale lod's are not discarded right away (maybe an optimization to not have to reload those tile upon zooming back out)
                     //however when zooming out, the smaller scale tiles seem to always be discarded right away
@@ -109,8 +109,8 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
 
                     if (results.features.length > 0) {
                         let maxLodFeature: Graphic = null;
-                        for (let i=0; i<results.features.length; i++) {
-                            let lod: number  = results.features[i].attributes[BOUNDARY_FIELD_REF_TILE_LOD.name];
+                        for (let i = 0; i < results.features.length; i++) {
+                            let lod: number = results.features[i].attributes[BOUNDARY_FIELD_REF_TILE_LOD.name];
                             if (maxLodFeature == null || lod > maxLodFeature.attributes[BOUNDARY_FIELD_REF_TILE_LOD.name]) {
                                 maxLodFeature = results.features[i];
                             }
@@ -145,13 +145,13 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
 
     addIfNotPresent(quadKey: IQuadKey): void {
 
-        let query: Query  = this.createQuery();
+        let query: Query = this.createQuery();
         query.where = BOUNDARY_FIELD_REF_TILE_ID.name + ' = \'' + quadKey.getId() + '\'';
         //console.log('where', query.where);
 
         let _this = this;
         this.queryFeatureCount(query).then(
-            function(count: number) {
+            function (count: number) {
                 if (count === 0) {
                     let graphic: Graphic = _this.tileGraphicFactory.createGraphic(quadKey, _this.quadTree);
                     let edits = {
@@ -160,9 +160,9 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
                         ]
                     };
                     _this.applyEdits(edits);
-                } 
+                }
             },
-            function(failure: any) {
+            function (failure: any) {
                 console.log('failed to query for existing features due to ' + failure);
             }
         );
@@ -179,7 +179,7 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
             if (attachedView['attached']) {
                 // @ts-ignore
                 attachedView._tileStrategy.clear();
-            } 
+            }
         });
     }
 
@@ -190,7 +190,7 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
 
     attachToVectorTileLayerView(vectorTileLayerView: LayerView): void {
 
-        let vectorTileLayer = <VectorTileLayer> vectorTileLayerView.layer;
+        let vectorTileLayer = <VectorTileLayer>vectorTileLayerView.layer;
         let _this = this;
 
         //find loaded lod's (origin, norm, ...)
@@ -199,7 +199,7 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
             quadTreeLoader.load().then(
                 function (quadTree: IQuadTree) {
                     _this.quadTree = quadTree;
-                }, 
+                },
                 function (failure: any) {
                     console.log('failed to load quad-tree', failure);
                 }
@@ -214,10 +214,10 @@ export class BoundariesLayerSyn extends FeatureLayer implements IColoredLayer  {
 
         //kind of a hack, but it needs to be known which tiles are being added to the container so out functionality runs along the standard vectortile api
         let tileContainer: any = vectorTileLayerView['container'];
-        let containerAddChild: Function = tileContainer['addChild']; 
+        let containerAddChild: Function = tileContainer['addChild'];
 
-        tileContainer['addChild'] = function(tile: any) { 
-            
+        tileContainer['addChild'] = function (tile: any) {
+
             //while in crop mode, ignore anything but the current crop tile
             if (_this.cropKey != null) {
                 if (tile.key.level !== _this.cropKey.getLod() || tile.key.col !== _this.cropKey.getCol() || tile.key.row !== _this.cropKey.getRow()) {

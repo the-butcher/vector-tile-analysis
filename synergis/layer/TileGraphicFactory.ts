@@ -29,7 +29,7 @@ export class TileGraphicFactory {
         let tileRing: number[][] = quadTree.getRing(quadKey);
         let geometry: Polygon = new Polygon({
             spatialReference: new SpatialReference({
-                wkid: 3857
+                wkid: 32632   // 3857
             }),
             rings: [
                 tileRing
@@ -44,17 +44,17 @@ export class TileGraphicFactory {
         let attributes: Object = {};
         attributes[BF.BOUNDARY_FIELD_REF_LAYER_ID.name] = this.layerId;
         attributes[BF.BOUNDARY_FIELD_REF_TILE_URL.name] = tileUrl,
-        attributes[BF.BOUNDARY_FIELD_REF_TILE_ID.name] = quadKey.getId(),
-        attributes[BF.BOUNDARY_FIELD_REF_TILE_LOD.name] = quadKey.getLod(),
-        attributes[BF.BOUNDARY_FIELD_REF_TILE_ROW.name] = quadKey.getRow(),
-        attributes[BF.BOUNDARY_FIELD_REF_TILE_COL.name] = quadKey.getCol()
-        
+            attributes[BF.BOUNDARY_FIELD_REF_TILE_ID.name] = quadKey.getId(),
+            attributes[BF.BOUNDARY_FIELD_REF_TILE_LOD.name] = quadKey.getLod(),
+            attributes[BF.BOUNDARY_FIELD_REF_TILE_ROW.name] = quadKey.getRow(),
+            attributes[BF.BOUNDARY_FIELD_REF_TILE_COL.name] = quadKey.getCol()
+
         //console.log('attributes', attributes);
         return new Graphic({
             attributes: attributes,
             geometry: geometry
         });
 
-    }    
+    }
 
 }

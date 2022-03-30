@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "@amcharts/amcharts4": "^4.7.1",
+    "@amcharts/amcharts4": "^4.9.26",
     "@types/arcgis-js-api": "^4.13.0",
     "@types/node": "^12.11.1"
   },

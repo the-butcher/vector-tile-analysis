@@ -1,11 +1,10 @@
-import { IColor } from "../../util/IColor";
 import { IValueFilter } from "./IValueFilter";
 import { Extent } from "esri/geometry";
 import { IColored } from "../../util/IColored";
 
 /**
  * definition for types that can contribute to, especially a dojo tree, but also to i.e an amcharts chart<br>
- * 
+ *
  * @author h.fleischer
  * @since 08.10.2019
  */
@@ -28,7 +27,7 @@ export interface ITreeData extends IColored {
 
     /**
      * set the parent-id of this item (when being added as child to that parent)
-     * @param id 
+     * @param id
      */
     setParent(id: string): void;
 
@@ -39,7 +38,7 @@ export interface ITreeData extends IColored {
 
     /**
      * add a child to this item
-     * @param treeData 
+     * @param treeData
      */
     addChild(treeData: ITreeData): void;
 

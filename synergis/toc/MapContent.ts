@@ -51,14 +51,14 @@ export class MapContent {
 
     /**
      * get an svg-fragment for the given visibility
-     * @param visible 
+     * @param visible
      */
     getIconHtml(visible: boolean) {
         if (visible) {
             return IconConstants.ICON_EYE;
         } else {
             return IconConstants.ICON_EYE_SLASH;
-        }   
+        }
     }
 
     toggleMapLayerVisibility(iconNode: HTMLDivElement, layerId: string): void {
@@ -71,14 +71,14 @@ export class MapContent {
         let layerSet: ILayerSet = VectorTileAnalysisApp.findLayerSet(layerId);
         let visible: boolean = layerSet.toggleVisibility();
         iconNode.innerHTML = this.getIconHtml(visible);
-    }   
+    }
 
     togglePaintSetVisibility(iconNode: HTMLDivElement, paintSetId: string): void {
         let paintSet: IPaintSet = this.findPaintSet(paintSetId);
         let visible: boolean = paintSet.toggleVisibility();
         iconNode.innerHTML = this.getIconHtml(visible);
-    }    
-    
+    }
+
     togglePaintVisibility(iconNode: HTMLDivElement, paintId: string): void {
         let paint: IPaint = this.findPaint(paintId);
         let visible: boolean = paint.toggleVisibility();
@@ -105,7 +105,7 @@ export class MapContent {
             }
         }
         return null;
-    }   
+    }
 
     findMapLayer(layerId: string): Layer {
         return this.view.map.findLayerById(layerId);
@@ -159,21 +159,21 @@ export class MapContent {
                 } else {
                     this.mapContentTree.remove(vectorUserLayerId); //overlay layer empty -> remove from TOC
                 }
-                //no full map content update, just removing 
+                //no full map content update, just removing
                 return;
 
             }
         }
         console.warn('failed to remove paint set by id', paintSetId);
 
-    }    
+    }
 
     setFilterKey(treeData: ITreeData): void {
 
         let layerSet: ILayerSet = this.findLayerSet(treeData);
         let valueFilter: IValueFilter = treeData.getValueFilter();
         layerSet.setFilterKey(valueFilter.getSourceLayer(), valueFilter.getKey());
-        
+
         //somewhat brute force, TODO implement in a more explicit way
         VectorTileAnalysisApp.vectorTileSelection.currentTileUrls = [];
         VectorTileAnalysisApp.vectorTileSelection.update(VectorTileAnalysisApp.view, VectorTileAnalysisApp.layerSets);
